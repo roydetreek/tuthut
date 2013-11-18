@@ -2,6 +2,8 @@
 // Muaz Khan     - https://github.com/muaz-khan 
 // MIT License   - https://www.webrtc-experiment.com/licence/
 // Documentation - https://github.com/muaz-khan/WebRTC-Experiment/tree/master/RecordRTC
+
+//new comment
 foreach(array('video', 'audio') as $type) {
     if (isset($_FILES["${type}-blob"])) {
         
