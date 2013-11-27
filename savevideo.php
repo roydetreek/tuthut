@@ -14,9 +14,13 @@ $Year =  $_GET["year"];
 $Emotion =  $_GET["emotion"];
 $Happiness =  $_GET["happiness"];
 $Amusing =  $_GET["amusing"];
+$Title = $_GET["title"];
+$Description = $_GET["description"];
+
+$Permalink = str_replace(' ', '_', $Title);
 	
 
-$sql = mysqli_query($con,	"INSERT INTO videos (ID, Date, Videosource, AudioSource, Thumbnailsource,Tags,Setting,Characters,Year,Emotion,Happiness,Amusing) 
+$sql = mysqli_query($con,	"INSERT INTO videos (ID, Date, Videosource, AudioSource, Thumbnailsource,Tags,Setting,Characters,Year,Emotion,Happiness,Amusing,Title,Description) 
 					VALUES (
 					'', 
 					'$Date',
@@ -29,7 +33,9 @@ $sql = mysqli_query($con,	"INSERT INTO videos (ID, Date, Videosource, AudioSourc
 					'$Year',
 					'$Emotion',
 					'$Happiness',
-					'$Amusing')
+					'$Amusing',
+					'$Title',
+					'$Description')
 					");
 					
 
