@@ -78,7 +78,7 @@ foreach($filesToMove as $value){
 	//echo $value;
 	$local_file = dirname(__FILE__)."/uploads/".$value;
    // $remote_file = "public_html/TUT/transfers/".$value;
-    $remote_file = "httpdocs/videos/".$value;
+    $remote_file = "httpdocs/uploads/".$value;
 
     # FTP
     $server = "ftp://tuthut.nl/".$remote_file;
