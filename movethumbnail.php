@@ -10,7 +10,7 @@ else
   echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
   echo "Stored in: " . $_FILES["file"]["tmp_name"];
   	
-	$uploads_dir = 'C:/wamp/www/Tutweb/php/transfers';
+	$uploads_dir = dirname(__FILE__)."/uploads/";
 	
 			$tmp_name = $_FILES["file"]["tmp_name"];
 			$name = $_FILES["file"]["name"];
