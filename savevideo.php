@@ -1,6 +1,8 @@
 <?php
+include_once("config.php");
 
-$con=mysqli_connect("localhost","root","","NOM");
+$con=mysqli_connect($host,$dbUser,$dbPassword,$dbName);
+
 $Date = date("Ymd"); 
 $VideoSource =  "uploads/" . $_GET["videosource"] . ".webm";
 $AudioSource =  "uploads/" . $_GET["audiosource"] . ".wav";
