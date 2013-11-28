@@ -292,12 +292,19 @@ function sendAll(){
 		type : 'POST',
 		dataType: 'json',
 		success : function (result) {	
-			console.log(result);			
-		}	
+			//console.log(result);			
+			alert(result);
+		},		
+		error :	function (result) {
+			alert (result);
+		}
 	});	
+	
 	request.fail(function( jqXHR, textStatus ) {
 	  alert( "Request failed: " + textStatus );
 	});
+	
+	
 }
 
 </script>
