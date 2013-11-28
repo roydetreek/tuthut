@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 28, 2013 at 11:37 AM
+-- Generation Time: Nov 28, 2013 at 12:09 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `test2`
+-- Database: `nom`
 --
 
 -- --------------------------------------------------------
@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `videos` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Date` date NOT NULL,
   `Videosource` varchar(255) NOT NULL,
+  `Audiosource` varchar(255) NOT NULL,
   `Thumbnailsource` varchar(255) NOT NULL,
   `Tags` varchar(255) NOT NULL,
   `Setting` varchar(255) NOT NULL,
