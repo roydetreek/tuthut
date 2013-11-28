@@ -284,12 +284,7 @@
         request.send(data);
     }
 
-    window.onbeforeunload = function() {
-        if (!!fileName) {
-            deleteAudioVideoFiles();
-            return 'It seems that you\'ve not deleted audio/video files from the server.';
-        }
-    };
+    
 </script>
 
 <script src="jquery-1.10.1.min.js"></script>
