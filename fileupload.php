@@ -24,7 +24,7 @@ $totalDirectorySize = 0;
 if ($handle = opendir($dir)) {
 	while (($file = readdir($handle)) !== false){
 		if (!in_array($file, array('.', '..')) && !is_dir($dir.$file)) {	
-			if (  substr(strrchr($file,'.'),1) == 'webm'){
+			if (  substr(strrchr($file,'.'),1) == 'webm' ||  substr(strrchr($file,'.'),1) == 'wav' ||  substr(strrchr($file,'.'),1) == 'png' ||  substr(strrchr($file,'.'),1) == 'jpg' ||  substr(strrchr($file,'.'),1) == 'gif'){
 				$i++;   
 				array_push ($a,$file);
 				$size = filesize('uploads/'.$file);
@@ -41,7 +41,7 @@ $responseArray = array('allnames' => $a,
 //var_dump($responseArray);
 $amountOfFilesToMove = count($responseArray["allnames"]);
 echo "on this server: <br>";
-echo "There are $amountOfFilesToMove files with webm extension<br> ";
+echo "There are $amountOfFilesToMove files <br> ";
 echo 'the names on this server are '.json_encode($responseArray["allnames"]).'<br>';	
 echo 'the total disk space = '.$totalDirectorySize;
 echo '<br>';  
@@ -57,7 +57,7 @@ $response = curl_exec($ch);
 $data=json_decode($response, true);
 $b= $data['allnames'];
 
-echo "There are ".$data['webmfiles']." files with webm extension<br> ";
+echo "There are ".$data['webmfiles']." files<br> ";
 echo 'the names on this server are '.json_encode($b).'<br>';
 echo 'the total disk space = '.$data['directorySize'];
 curl_close ($ch);
