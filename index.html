@@ -137,7 +137,6 @@
 
 	<button id="record">Record</button>
 	<button id="stop" disabled>Stop</button>
-	<button id="delete" disabled>Delete your webm/wav files from Server</button>
 
 <br>
     Tag 1: <input id= 'tag1' type="text" name="tag1" value=""><br>
@@ -190,7 +189,6 @@
 
     var record = document.getElementById('record');
     var stop = document.getElementById('stop');
-    var deleteFiles = document.getElementById('delete');
 
     var audio = document.querySelector('audio');
 
@@ -252,22 +250,6 @@
 		
 		window.filename = fileName;
     };
-
-    deleteFiles.onclick = function() {
-        deleteAudioVideoFiles();
-    };
-
-    function deleteAudioVideoFiles() {
-        deleteFiles.disabled = true;
-        if (!fileName) return;
-        var formData = new FormData();
-        formData.append('delete-file', fileName);
-        xhr('delete.php', formData, null, function(response) {
-            console.log(response);
-        });
-        fileName = null;
-        container.innerHTML = '';
-    }
 
     function xhr(url, data, progress, callback) {
         var request = new XMLHttpRequest();
