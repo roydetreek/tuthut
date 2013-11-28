@@ -135,9 +135,10 @@ function callback($download_size, $downloaded, $upload_size, $uploaded){
 	flush();
 }
 //----------------------------------------------------------------------------------------
-$connection1 =mysqli_connect("localhost","root","","NOM");
-$connection2 =mysqli_connect("85.17.248.122","NOM","tut2013hut","NOM");
-
+//$connection1 =mysqli_connect("localhost","root","","NOM");
+include_once("config.php");
+$connection1=mysqli_connect($host,$dbUser,$dbPassword,$dbName);
+$connection2 =mysqli_connect($remotehost,$remotedbName,$remotedbUser,$remotedbPassword);
 $localResults = mysqli_query($connection1,"SELECT * FROM videos");
 
 while($row = mysqli_fetch_array($localResults, MYSQL_ASSOC)){
