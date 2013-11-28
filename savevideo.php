@@ -27,17 +27,26 @@ if($_GET["videosource"]){
 	$Permalink = str_replace(' ', '_', $Title);
 		
 	
-	$sql = mysqli_query($con,	"INSERT INTO videos (ID, Date, Videosource, AudioSource) 
-						VALUES (
-						'', 
-						'$Date',
-						'$VideoSource',
-						'')
-						");
-						
+	$sql = mysqli_query($con,  "INSERT INTO videos (ID, Date, Videosource, AudioSource,Tags,Setting,Characters,Year,Emotion,Happiness,Amusing,Title,Description) 
+	           VALUES (
+	           '', 
+	           '$Date',
+	           '$VideoSource',
+	           '$AudioSource',
+	           ' ".$Tag1." , ".$Tag2." , ".$Tag3." ,',
+	           '$Setting',
+	           '$Characters',
+	           '$Year',
+	           '$Emotion',
+	           '$Happiness',
+	           '$Amusing',
+	           '$Title',
+	           '$Description')
+	           ");						
 	if($sql){
 		echo json_encode( 'succesvol');
 	}else{
+		//echo mysql_error($sql);
 		echo json_encode( 'error');
 	}
 

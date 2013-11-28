@@ -76,7 +76,7 @@ $nextdownload = false;
 foreach($filesToMove as $value){
 	global $totalpercentage,$nextdownload;
 	//echo $value;
-	$local_file = "C:/wamp/www/tuthut/uploads/".$value;
+	$local_file = dirname(__FILE__)."/uploads/".$value;
    // $remote_file = "public_html/TUT/transfers/".$value;
     $remote_file = "httpdocs/videos/".$value;
 
