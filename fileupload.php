@@ -18,7 +18,7 @@ function updateProgress(percentage,totalpercentage){
 <?php
 //get all info on .webm files currently on THIS server
 $i = 0; 
-$dir = 'transfers/';
+$dir = 'uploads/';
 $a=array();
 $totalDirectorySize = 0;
 if ($handle = opendir($dir)) {
@@ -27,7 +27,7 @@ if ($handle = opendir($dir)) {
 			if (  substr(strrchr($file,'.'),1) == 'webm'){
 				$i++;   
 				array_push ($a,$file);
-				$size = filesize('transfers/'.$file);
+				$size = filesize('uploads/'.$file);
 				$totalDirectorySize += $size;  
 			}
 		}
@@ -76,7 +76,7 @@ $nextdownload = false;
 foreach($filesToMove as $value){
 	global $totalpercentage,$nextdownload;
 	//echo $value;
-	$local_file = "C:/wamp/www/Tutweb/php/transfers/".$value;
+	$local_file = "C:/wamp/www/tuthut/uploads/".$value;
    // $remote_file = "public_html/TUT/transfers/".$value;
     $remote_file = "httpdocs/videos/".$value;
 

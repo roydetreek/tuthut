@@ -32,7 +32,7 @@
 
 <script>
 function viewUpload(){
-window.open("http://localhost/Tutweb/php/fileupload.php","_blank","toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
+window.open("http://localhost/tuthut/fileupload.php","_blank","toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
 }
 
 </script>
