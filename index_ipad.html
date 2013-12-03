@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Tuthut</title>
+        <title>TutPad</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -132,14 +132,13 @@
         <script src="https://www.webrtc-experiment.com/RecordRTC.js"> </script>
     </head>
     <body onload = 'onloadfunction()'>
-       
-    <video id="preview" controls style="border: 1px solid rgb(15, 158, 238); height: 240px; width: 320px;"></video> <hr />
-
+    	
+    <div id="playControls">
 	<button id="record">Record</button>
-	<button id="stop" disabled>Stop</button>
+	<button id="stop">Stop</button>
+	</div>
 
-<div id="container">
-<br>
+<div id="container">    
     Tag 1: <input id= 'tag1' type="text" name="tag1" value=""><br>
     Tag 2: <input id="tag2" type="text" name="tag2" value=""><br>
     Tag 3: <input id='tag3' type="text" name="tag3" value=""><br>
@@ -151,46 +150,49 @@
     Ongelukkig/Gelukkig<input type="range" value="3" id="happiness" min="1" max="5" style="position:absolute; left:250px"> <br>
     Titel: <input id='title' type = "text" name="title" value=""><br>
     Omschrijving: <input id='description' type="text" name="description" value=""><br>
-    <input type="submit" onClick="sendAll()">
-
-
+    <input type="submit" onClick="nextPage()">
 </div>
 
-<script src="fancywebsocket.js"></script>
+<script src="jquery-1.10.1.min.js"></script>
 
 <script>
-//This Index HTML is in the recordJS folder
+//This Index HTML is in the IpadRemoteControl
+
+	function nextPage()
+	{
+		$('#container').hide();
+		$('#playControls').show();
+		$('#stop').hide();
+	}
+	
+	
+	
+</script>
+
+	<script src="fancywebsocket.js"></script>
+
+<script>
 var Server;
 
-	function onloadfunction() 
+function send( text ) 
+{
+	Server.send( 'message', text );
+}
+
+
+
+function onloadfunction() 
 	{
-		$('#container').hide();	
-		
 		Server = new FancyWebSocket('ws://192.168.0.122:9300');
 		Server.bind('open', function() {
-				console.log( "Tuthut Connected." );
-			});
-		
-		//Log any messages sent from server
-		Server.bind('message', function( payload ) {
-			console.log( payload );
-			
-			if(payload == "record")
-			{
-				startRec(payload);
-				console.log("We should start recording now");
-			}else if (payload == "stop")
-			{
-				stopRec(payload);
-				console.log("We should really stop recording now");
-			}
-			
-		});
-					
+				console.log( "Connected." );
+			});		
 		Server.connect();
+    	$('#playControls').hide();	
 		
 	}
-
+	
+	
     function PostBlob(blob, fileType, fileName) {
         // FormData
         var formData = new FormData();
@@ -223,86 +225,41 @@ var Server;
 
     var record = document.getElementById('record');
     var stop = document.getElementById('stop');
+    var deleteFiles = document.getElementById('delete');
 
     var audio = document.querySelector('audio');
 
     var recordVideo = document.getElementById('record-video');
-    var preview = document.getElementById('preview');
 
     var container = document.getElementById('container');
 
-    var recordAudio;
-	var recordVideo;
-	
-	function startRec(message) 
-	{
-		if(message == "record")
-		{
-			record.disabled = true;
-			var video_constraints = 
-			{
-				mandatory: { },
-				optional: []
-			};
-			
-			navigator.getUserMedia(
-				{
-					audio: true,
-					video: video_constraints
-				}, function(stream) 
-					{
-						preview.src = window.URL.createObjectURL(stream);
-						preview.play();
-	
-						// var legalBufferValues = [256, 512, 1024, 2048, 4096, 8192, 16384];
-						// sample-rates in at least the range 22050 to 96000.
-						recordAudio = RecordRTC(stream, 
-						{
-							//bufferSize: 16384,
-							//sampleRate: 45000
-						});
-					
-						recordVideo = RecordRTC(stream, 
-						{
-							type: 'video'
-						});
-	
-						recordAudio.startRecording();
-						recordVideo.startRecording();
-	
-						stop.disabled = false;
-					});
-		}
-        
-    }
-	
-    record.onclick = startRec();
-    stop.onclick = stopRec();
-	
+    var recordAudio, recordVideo;
+    
+	record.onclick = function() {
+		$('#record').hide();
+		$('#stop').show();
+      	send("record");
+    };
+
     var fileName;
-	function stopRec(message) {
-		if (message == "stop")
-		{
-			record.disabled = false;
-			stop.disabled = true;
-			
-			var date = new Date().getTime();
 	
-			console.log(date);
-			fileName = date;
-			
-			recordAudio.stopRecording();
-			PostBlob(recordAudio.getBlob(), 'audio', fileName + '.wav');
-	
-			recordVideo.stopRecording();
-			PostBlob(recordVideo.getBlob(), 'video', fileName + '.webm');
-			
-			preview.src = '';
-			
-			window.filename = fileName;	
-		}
-    }
-	
+    stop.onclick = function() {
+
+		$('#record').show();
+		$('#stop').hide();
+				
+		var date = new Date().getTime();
+
+		console.log(date);
+        fileName = date;
+		
+		send("stop");
+				
+		window.filename = fileName;
+		
+		sendAll();
+		//return to empty form to fill in new database entry
+    };
 
 
     function xhr(url, data, progress, callback) {
@@ -318,12 +275,10 @@ var Server;
         };
         request.open('POST', url);
         request.send(data);
-    }
-
-    
+    };
+	
+	
 </script>
-
-<script src="jquery-1.10.1.min.js"></script>
 
 <script>
 
@@ -348,16 +303,12 @@ function sendAll(){
 		type : 'POST',
 		dataType: 'json',
 		success : function (result) {	
-			//console.log(result);			
-			alert(result);
-		},		
+			console.log(result);			
+		}	
 	});	
-	
 	request.fail(function( jqXHR, textStatus ) {
 	  alert( "Request failed: " + textStatus );
 	});
-	
-	
 }
 
 </script>
