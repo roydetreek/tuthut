@@ -18,7 +18,7 @@ function send( text )
 
 function onloadfunction() 
 	{
-		Server = new FancyWebSocket('ws://192.168.0.122:9300');
+		Server = new FancyWebSocket('ws://localhost:9300');
 		Server.bind('open', function() {
 				console.log( "Connected." );
 			});		

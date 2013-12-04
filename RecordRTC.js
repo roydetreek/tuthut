@@ -366,8 +366,8 @@ function StereoAudioRecorder(mediaStream, root) {
 
 function WhammyRecorder(mediaStream) {
     this.record = function() {
-        if (!this.width) this.width = video.offsetWidth || 320;
-        if (!this.height) this.height = video.offsetHeight || 240;
+        if (!this.width) this.width = video.offsetWidth || 640;
+        if (!this.height) this.height = video.offsetHeight || 480;
 
         if (!this.video) {
             this.video = {

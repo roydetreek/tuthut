@@ -5,7 +5,7 @@ var Server;
 	{
 		$('#container').hide();	
 		
-		Server = new FancyWebSocket('ws://192.168.0.122:9300');
+		Server = new FancyWebSocket('ws://localhost:9300');
 		Server.bind('open', function() {
 				console.log( "Tuthut Connected." );
 			});
@@ -103,7 +103,15 @@ var Server;
 					
 						recordVideo = RecordRTC(stream, 
 						{
-							type: 'video'
+							type: 'video',
+							video: {
+								width: 1920,
+								height: 1080
+							},
+							canvas: {
+								width: 640,
+								height: 480
+							}
 						});
 	
 						recordAudio.startRecording();
