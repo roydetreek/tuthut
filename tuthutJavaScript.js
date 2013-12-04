@@ -66,7 +66,7 @@ var Server;
     var audio = document.querySelector('audio');
 
     var recordVideo = document.getElementById('record-video');
-    var preview = document.getElementById('preview');
+//    var preview = document.getElementById('preview');
 
     var container = document.getElementById('container');
 
@@ -90,8 +90,8 @@ var Server;
 					video: video_constraints
 				}, function(stream) 
 					{
-						preview.src = window.URL.createObjectURL(stream);
-						preview.play();
+						//preview.src = window.URL.createObjectURL(stream);
+						//preview.play();
 	
 						// var legalBufferValues = [256, 512, 1024, 2048, 4096, 8192, 16384];
 						// sample-rates in at least the range 22050 to 96000.
@@ -107,12 +107,10 @@ var Server;
 							video: {
 								width: 1920,
 								height: 1080
-							},
-							canvas: {
-								width: 640,
-								height: 480
 							}
 						});
+						
+						
 	
 						recordAudio.startRecording();
 						recordVideo.startRecording();
@@ -125,7 +123,8 @@ var Server;
 	
     record.onclick = startRec();
     stop.onclick = stopRec();
-	
+	//previes frame for index, ignore this, causes lag if used, all preview var references commented out
+	//<video id="preview" controls style="border: 1px solid rgb(15, 158, 238); height: 240px; width: 320px;"></video> <hr />
     var fileName;
 	function stopRec(message) {
 		if (message == "stop")
@@ -144,7 +143,7 @@ var Server;
 			recordVideo.stopRecording();
 			PostBlob(recordVideo.getBlob(), 'video', fileName + '.webm');
 			
-			preview.src = '';
+			//preview.src = '';
 			
 			window.filename = fileName;	
 		}
