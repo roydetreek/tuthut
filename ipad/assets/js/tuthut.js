@@ -13,30 +13,8 @@ var KofferStory = {
   index: {
     init: function() {
       // JS here
-      initializeHome();
     }
   },
-  // Stories page
-  stories: {
-    init: function() {
-      // JS here
-      initializeStories();
-    }
-  },
-  // Story page
-  story: {
-    init: function() {
-      // JS here
-      initializeStory();
-    }
-  },
-  // Tag page
-  tag: {
-    init: function() {
-      // JS here
-      initializeTag();
-    }
-  }
 };
 
 var UTIL = {
@@ -69,28 +47,6 @@ String.prototype.repeat = function(num) {
 
 (function($) {
 
-    // jQuery UI Spinner
-    $.widget( "ui.customspinner", $.ui.spinner, {
-      widgetEventPrefix: $.ui.spinner.prototype.widgetEventPrefix,
-      _buttonHtml: function() { // Remove arrows on the buttons
-        return "" +
-        "<a class='ui-spinner-button ui-spinner-up ui-corner-tr'>" +
-          "<span class='ui-icon " + this.options.icons.up + "'></span>" +
-        "</a>" +
-        "<a class='ui-spinner-button ui-spinner-down ui-corner-br'>" +
-          "<span class='ui-icon " + this.options.icons.down + "'></span>" +
-        "</a>";
-      }
-    });
-
-    $('#spinner-01, .spinner').customspinner({
-      min: $(this).data("min"),
-      max: $(this).data("max")
-    }).on('focus', function () {
-      $(this).closest('.ui-spinner').addClass('focus');
-    }).on('blur', function () {
-      $(this).closest('.ui-spinner').removeClass('focus');
-    });
     $("select").selectpicker({style: 'btn-hg btn-primary', menuStyle: 'dropdown-inverse'});
     
     var $inputSlider = $(".input-slider");
@@ -110,44 +66,3 @@ String.prototype.repeat = function(num) {
       });
     }        
 })(jQuery);
-
-
-
-function initializeVideoJS(){  
-  videojs("tutvideo").ready(function(){
-    var video = this;
-  
-    console.log(video.contentEl());
-    
-    
-    var audio = document.createElement('audio');
-    audio.setAttribute("preload", "auto");
-    audio.autobuffer = true;
-    
-    var source1   = document.createElement('source');
-    source1.type  = 'audio/wav';
-    source1.src   = $(video.contentEl()).find("> video").data('audio-src');
-    audio.appendChild(source1);
-    audio.load();
-    audio.volume = 1;
-    
-    
-    video.on('volumechange', function(e){
-      audio.volume = video.volume();
-    });
-    video.on('play', function(e){
-      audio.play();
-    });
-    video.on('pause', function(e){
-      audio.pause();
-    });
-    video.on('ended', function(e){
-      audio.pause();
-    });
-    video.on('timeupdate', function(){
-      if(Math.ceil(audio.currentTime) != Math.ceil(video.currentTime())){
-        audio.currentTime = video.currentTime();
-      }
-    });
-  });
-}

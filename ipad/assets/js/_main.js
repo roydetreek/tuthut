@@ -46,6 +46,9 @@ String.prototype.repeat = function(num) {
 };
 
 (function($) {
+
+    $("select").selectpicker({style: 'btn-hg btn-primary', menuStyle: 'dropdown-inverse'});
+    
     var $inputSlider = $(".input-slider");
     if ($inputSlider.length > 0) {
       $inputSlider.slider({
