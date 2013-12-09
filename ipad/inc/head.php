@@ -12,7 +12,7 @@
 
     <!-- Loading Flat UI -->
     <link href="<?=$site_url?>/assets/css/flat-ui.css" rel="stylesheet">
-    <link href="<?=$site_url?>/assets/css/tutweb-theme.css" rel="stylesheet">  
+    <link href="<?=$site_url?>/assets/css/tuthut-theme.css" rel="stylesheet">  
 
     <link rel="shortcut icon" href="<?=$site_url?>/assets/images/favicon.ico">
 
