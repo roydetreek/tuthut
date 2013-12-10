@@ -6,51 +6,48 @@ $con=mysqli_connect($host,$dbUser,$dbPassword,$dbName);
 if(!$con){
 	echo "<h1>ERROR<h1> <h2>NO DATABASE CONNECTION</h2><p>PLEASE CHECK DATABASE CONFIGRATION & CREDENTIALS</p>";
 }
-
-if($_GET["videosource"]){
-	$Date = date("Ymd"); 
-	$VideoSource =  "uploads/" . $_GET["videosource"] . ".webm";
-	$AudioSource =  "uploads/" . $_GET["audiosource"] . ".wav";
-	$Thumbnailsource =  $_GET["thumbnailsource"];
-	$Tag1 =  $_GET["tag1"];
-	$Tag2 =  $_GET["tag2"];
-	$Tag3 =  $_GET["tag3"];
-	$Setting =  $_GET["setting"];
-	$Characters =  $_GET["characters"];
-	$Year =  $_GET["year"];
-	$Emotion =  $_GET["emotion"];
-	$Happiness =  $_GET["happiness"];
-	$Amusing =  $_GET["amusing"];
-	$Title = $_GET["title"];
-	$Description = $_GET["description"];
-	
-	$Permalink = str_replace(' ', '_', $Title);
+if (isset($_POST["name"])){
+	$name =  $_POST["name"];
+	$dob =  strtotime($_POST["dob"]);
+	$object =  $_POST["object"];
+	$location =  $_POST["location"];
+	$cast =  $_POST["cast"];
+	$year =  $_POST["year"];
+	$category1 =  $_POST["category1"];
+	$category2 =  $_POST["category2"];
+	$category3 =  $_POST["category3"];
+	$title =  $_POST["title"];
+	$description =  $_POST["description"];
+	$tag1 =  $_POST["tag1"];
+	$tag2 =  $_POST["tag2"];
+	$tag3 =  $_POST["tag3"];
+	//http://localhost/tuthut/savevideo.php?name=lol&dob=11-11-2013&object=vork&location=denemarken&cast=vrienden&year=2013&category1=1&category2=2&category3=3&title=wraak&description=komisch&tag1=1&tag2=2&tag3=3
+	//$Permalink = str_replace(' ', '_', $Title);
 		
 	
-	$sql = mysqli_query($con,  "INSERT INTO videos (ID, Date, Videosource, AudioSource,Tags,Setting,Characters,Year,Emotion,Happiness,Amusing,Title,Description) 
+	$sql = mysqli_query($con,  "INSERT INTO videos (ID, title, description, object,name,location,cast,year,category1,category2,category3,tags) 
 	           VALUES (
 	           '', 
-	           '$Date',
-	           '$VideoSource',
-	           '$AudioSource',
-	           ' ".$Tag1." , ".$Tag2." , ".$Tag3." ,',
-	           '$Setting',
-	           '$Characters',
-	           '$Year',
-	           '$Emotion',
-	           '$Happiness',
-	           '$Amusing',
-	           '$Title',
-	           '$Description')
-	           ");						
+	           '$title',
+	           '$description',
+	           '$object',	          
+	           '$name',
+	           '$location',
+	           '$cast',
+	           '$year',
+	           '$category1',
+	           '$category2',
+	           '$category3',
+			   ' ".$tag1." , ".$tag2." , ".$tag3." ,'
+	           )");						
 	if($sql){
 		echo json_encode( 'succesvol');
 	}else{
 		//echo mysql_error($sql);
 		echo json_encode( 'error');
 	}
-
 }else{
-	echo "Silence is golden";
+	echo 'dafuq';
 }
+
 ?>
