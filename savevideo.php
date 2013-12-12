@@ -39,9 +39,13 @@ if (isset($_POST["name"])){
 	           '$category2',
 	           '$category3',
 			   ' ".$tag1." , ".$tag2." , ".$tag3." ,'
-	           )");						
+	           )");		
+			
 	if($sql){
-		echo json_encode( 'succesvol');
+		echo mysqli_insert_id($con);
+		//echo json_encode( 'succesvol');
+		//$last_id = mysql_insert_id();
+		//printf $last_id;
 	}else{
 		//echo mysql_error($sql);
 		echo json_encode( 'error');
