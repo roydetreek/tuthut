@@ -8,7 +8,7 @@ if(!$con){
 }
 if (isset($_POST["name"])){
 	$name =  $_POST["name"];
-	$dob =  strtotime($_POST["dob"]);
+	$dob =  date( "Y-m-d", strtotime( $_POST["dob"] ) );
 	$object =  $_POST["object"];
 	$location =  $_POST["location"];
 	$cast =  $_POST["cast"];
@@ -24,14 +24,18 @@ if (isset($_POST["name"])){
 	//http://localhost/tuthut/savevideo.php?name=lol&dob=11-11-2013&object=vork&location=denemarken&cast=vrienden&year=2013&category1=1&category2=2&category3=3&title=wraak&description=komisch&tag1=1&tag2=2&tag3=3
 	//$Permalink = str_replace(' ', '_', $Title);
 		
+	//$format = 'd-m-Y';
+	//$date = DateTime::createFromFormat($format, $dob);
+		//echo $dob;
 	
-	$sql = mysqli_query($con,  "INSERT INTO videos (ID, title, description, object,name,location,cast,year,category1,category2,category3,tags) 
+	$sql = mysqli_query($con,  "INSERT INTO videos (ID, title, description, object,name,dob,location,cast,year,category1,category2,category3,tags) 
 	           VALUES (
 	           '', 
 	           '$title',
 	           '$description',
 	           '$object',	          
 	           '$name',
+			   '$dob',
 	           '$location',
 	           '$cast',
 	           '$year',
@@ -49,6 +53,7 @@ if (isset($_POST["name"])){
 	}else{
 		//echo mysql_error($sql);
 		echo json_encode( 'error');
+		
 	}
 }else{
 	echo 'dafuq';
