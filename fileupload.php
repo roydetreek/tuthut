@@ -138,11 +138,12 @@ function callback($download_size, $downloaded, $upload_size, $uploaded){
 //$connection1 =mysqli_connect("localhost","root","","NOM");
 include_once("config.php");
 $connection1=mysqli_connect($host,$dbUser,$dbPassword,$dbName);
-$connection2 =mysqli_connect($remotehost,$remotedbName,$remotedbUser,$remotedbPassword);
+$connection2 =mysqli_connect($remotehost,$remotedbUser,$remotedbPassword,$remotedbName);
 $localResults = mysqli_query($connection1,"SELECT * FROM videos");
 
 while($row = mysqli_fetch_array($localResults, MYSQL_ASSOC)){
 	mysqli_query($connection2,"INSERT INTO videos (".implode(", ",array_keys($row)).")  VALUES ('".implode("', '",array_values($row))." ')");
+	echo "All data has been transferd";
 }
 if (mysqli_connect_errno($connection1)){
   	echo "Failed to connect to MySQL connection1: " . mysqli_connect_error();
