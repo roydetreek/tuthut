@@ -16,7 +16,7 @@ function updateProgress(percentage,totalpercentage){
 
 </script>
 <?php
-//get all info on .webm files currently on THIS server
+//get all info on mp4 files currently on THIS server
 $i = 0; 
 $dir = 'uploads/';
 $a=array();
@@ -24,7 +24,7 @@ $totalDirectorySize = 0;
 if ($handle = opendir($dir)) {
 	while (($file = readdir($handle)) !== false){
 		if (!in_array($file, array('.', '..')) && !is_dir($dir.$file)) {	
-			if (  substr(strrchr($file,'.'),1) == 'webm' ||  substr(strrchr($file,'.'),1) == 'wav' ||  substr(strrchr($file,'.'),1) == 'png' ||  substr(strrchr($file,'.'),1) == 'jpg' ||  substr(strrchr($file,'.'),1) == 'gif'){
+			if (  substr(strrchr($file,'.'),1) == 'mp4' ){
 				$i++;   
 				array_push ($a,$file);
 				$size = filesize('uploads/'.$file);
@@ -34,21 +34,21 @@ if ($handle = opendir($dir)) {
 	}
 } 
 $responseArray = array('allnames' => $a,
-						'webmfiles'=> $i,
+						'mp4files'=> $i,
 						'directorySize' =>$totalDirectorySize);
 					//	'realpath' => realpath);
 						
 //var_dump($responseArray);
 $amountOfFilesToMove = count($responseArray["allnames"]);
 echo "on this server: <br>";
-echo "There are $amountOfFilesToMove files <br> ";
-echo 'the names on this server are '.json_encode($responseArray["allnames"]).'<br>';	
+echo "There are $amountOfFilesToMove files with .mp4 extension<br> ";
+echo 'the names of those files are '.json_encode($responseArray["allnames"]).'<br>';	
 echo 'the total disk space = '.$totalDirectorySize;
 echo '<br>';  
 echo '<br>'; 
 
 //get all info on .webm files currently on the WEB server
-$target_url = 'http://tuthut.nl/existingfiles.php/';
+$target_url = 'http://www.kofferstory.org/existingfiles.php/';
 echo "on the TutHut server: <br>";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL,$target_url);
@@ -57,8 +57,8 @@ $response = curl_exec($ch);
 $data=json_decode($response, true);
 $b= $data['allnames'];
 
-echo "There are ".$data['webmfiles']." files<br> ";
-echo 'the names on this server are '.json_encode($b).'<br>';
+echo "There are ".$data['mp4files']." files<br> ";
+echo 'the names of those files are '.json_encode($b).'<br>';
 echo 'the total disk space = '.$data['directorySize'];
 curl_close ($ch);
 echo '<br>';  
@@ -78,7 +78,7 @@ foreach($filesToMove as $value){
 	//echo $value;
 	$local_file = dirname(__FILE__)."/uploads/".$value;
    // $remote_file = "public_html/TUT/transfers/".$value;
-    $remote_file = "httpdocs/uploads/".$value;
+    $remote_file = "kofferstory.org/uploads/".$value;
 
     # FTP
     $server = "ftp://tuthut.nl/".$remote_file;
