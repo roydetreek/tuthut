@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Dec 04, 2013 at 12:16 PM
--- Server version: 5.5.31
--- PHP Version: 5.4.19
+-- Machine: localhost
+-- Genereertijd: 16 dec 2013 om 09:28
+-- Serverversie: 5.6.12-log
+-- PHP-versie: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `nom`
+-- Databank: `nom`
 --
 CREATE DATABASE IF NOT EXISTS `nom` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `nom`;
@@ -25,28 +25,44 @@ USE `nom`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `videos`
+-- Tabelstructuur voor tabel `koffers`
+--
+
+CREATE TABLE IF NOT EXISTS `koffers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `videos`
 --
 
 CREATE TABLE IF NOT EXISTS `videos` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Date` date NOT NULL,
-  `Videosource` varchar(255) NOT NULL,
-  `Audiosource` varchar(255) NOT NULL,
-  `Thumbnailsource` varchar(255) NOT NULL,
-  `Tags` varchar(255) NOT NULL,
-  `Setting` varchar(255) NOT NULL,
-  `Characters` varchar(255) NOT NULL,
-  `Year` int(11) NOT NULL,
-  `Emotion` int(11) NOT NULL,
-  `Happiness` int(11) NOT NULL,
-  `Amusing` int(11) NOT NULL,
-  `Rating` tinyint(4) NOT NULL,
-  `Title` varchar(255) NOT NULL,
-  `Description` varchar(2000) NOT NULL,
-  `Featured` tinyint(1) NOT NULL,
-  UNIQUE KEY `ID` (`ID`,`Videosource`,`Thumbnailsource`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=80 ;
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `object` varchar(255) NOT NULL,
+  `videosource` varchar(255) NOT NULL,
+  `audiosource` varchar(255) NOT NULL,
+  `images` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `dob` date DEFAULT NULL,
+  `location` varchar(255) NOT NULL,
+  `cast` varchar(255) NOT NULL,
+  `year` smallint(4) DEFAULT '0',
+  `category1` tinyint(2) DEFAULT '0',
+  `category2` tinyint(2) DEFAULT '0',
+  `category3` tinyint(2) DEFAULT '0',
+  `rating` float DEFAULT '0',
+  `tags` varchar(255) NOT NULL,
+  `featured` tinyint(1) DEFAULT '0',
+  `savedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY `ID` (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
