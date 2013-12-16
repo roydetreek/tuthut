@@ -9,6 +9,7 @@ if(!$con){
 if (isset($_POST["name"])){
 	$name =  $_POST["name"];
 	$dob =  date( "Y-m-d", strtotime( $_POST["dob"] ) );
+	$videosource =  $_POST["videosource"];
 	$object =  $_POST["object"];
 	$location =  $_POST["location"];
 	$cast =  $_POST["cast"];
@@ -28,12 +29,13 @@ if (isset($_POST["name"])){
 	//$date = DateTime::createFromFormat($format, $dob);
 		//echo $dob;
 	
-	$sql = mysqli_query($con,  "INSERT INTO videos (ID, title, description, object,name,dob,location,cast,year,category1,category2,category3,tags) 
+	$sql = mysqli_query($con,  "INSERT INTO videos (ID, title, description, object,videosource,name,dob,location,cast,year,category1,category2,category3,tags) 
 	           VALUES (
 	           '', 
 	           '$title',
 	           '$description',
-	           '$object',	          
+	           '$object',	 
+			   '$videosource'.
 	           '$name',
 			   '$dob',
 	           '$location',
