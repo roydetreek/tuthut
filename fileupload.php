@@ -42,34 +42,38 @@
   					//	'realpath' => realpath);
   						
   //var_dump($responseArray);
-  $amountOfFilesToMove = count($responseArray["allnames"]);
-  echo "<strong>On this server:</strong><br>";
-  echo "<small>There ".($amountOfFilesToMove == 1 ? "is" : "are")." $amountOfFilesToMove ".($amountOfFilesToMove == 1 ? "file" : "files")." with a .mp4 extension<br>";
-  //echo 'the names of those files are '.json_encode($responseArray["allnames"]).'<br>';	
-  echo 'Total upload size = '.number_format((float)($totalDirectorySize/1000000), 2, '.', '')." MB";
-  echo '</small>';
-  echo '<br>';  
-  echo '<br>'; 
-  
+  //$amountOfFilesToMove = count($responseArray["allnames"]);
   //get all info on .webm files currently on the WEB server
   $target_url = 'http://www.kofferstory.org/existingfiles.php/';
-  echo "<strong>On the kofferstory.org server:</strong><br>";
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL,$target_url);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
   $response = curl_exec($ch);
   $data=json_decode($response, true);
   $b= $data['allnames'];
+  curl_close ($ch);
+
+
+  $filesToMove = array_diff($a, $b);
+  $amountOfFilesToMove = count($filesToMove);
+
+
+  echo "<strong>On this server:</strong><br>";
+  echo "<small>There ".($amountOfFilesToMove == 1 ? "is " : "are ").$amountOfFilesToMove." new ".($amountOfFilesToMove == 1 ? "file" : "files")." with a .mp4 extension<br>";
+  //echo 'the names of those files are '.json_encode($responseArray["allnames"]).'<br>';	
+  echo 'Total upload size = '.number_format((float)($totalDirectorySize/1000000), 2, '.', '')." MB";
+  echo '</small>';
+  echo '<br>';  
+  echo '<br>'; 
+  
+  echo "<strong>On the kofferstory.org server:</strong><br>";
   
   echo "<small>There are ".$data['mp4files']." files with a .mp4 extension<br>";
   //echo 'the names of those files are '.json_encode($b).'<br>';
   echo 'the total disk space = '.number_format((float)($data['directorySize']/1000000), 2, '.', '')." MB";
   echo '</small>';
-  curl_close ($ch);
   echo '<br>';  
   echo '<br>';  
-  $filesToMove = array_diff($a, $b);
-  $amountOfFilesToMove = count($filesToMove);
   // var_dump ($filesToMove);
   // echo json_encode($filesToMove).'<br>';
   //----------------------------------------------------------------------------------------------
