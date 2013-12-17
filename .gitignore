@@ -1,4 +1,5 @@
 uploads/*
 transfers/*
 config.php
-node_modules/*
+ipad/node_modules/*
+videos/*.mp4
