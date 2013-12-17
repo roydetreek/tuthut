@@ -26,8 +26,8 @@
     	document.getElementById('totalprogressbar').innerHTML = parseInt(totalpercentage)+'%';
     	document.getElementById('totalprogressbarimg').width = totalpercentage*2;
     	
-    	document.getElementById('progressbarStory').width = percentage+'%';
-    	document.getElementById('progressbarTotal').width = totalpercentage+'%';
+    	document.getElementById('progressbarStory').style.width = percentage+'%';
+    	document.getElementById('progressbarTotal').style.width = totalpercentage+'%';
     }
   </script>
   <?php
