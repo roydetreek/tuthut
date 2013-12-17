@@ -58,22 +58,20 @@
   $amountOfFilesToMove = count($filesToMove);
 
 
-  echo "<strong>On this server:</strong><br>";
-  echo "<small>There ".($amountOfFilesToMove == 1 ? "is " : "are ").$amountOfFilesToMove." new ".($amountOfFilesToMove == 1 ? "file" : "files")." with a .mp4 extension<br>";
-  //echo 'the names of those files are '.json_encode($responseArray["allnames"]).'<br>';	
-  echo 'Total upload size = '.number_format((float)($totalDirectorySize/1000000), 2, '.', '')." MB";
+  echo "<strong>Deze koffer:</strong><br/>";
+  echo "<small>Er ".($amountOfFilesToMove == 1 ? "is " : "zijn ").$amountOfFilesToMove.($amountOfFilesToMove == 1 ? " nieuw nieuwe bestand" : " nieuwe video bestanden")."<br>";
+  //echo 'the names of those files are '.json_encode($responseArray["allnames"]).'<br>';
+  //echo 'Total upload size = '.number_format((float)($totalDirectorySize/1000000), 2, '.', '')." MB";
   echo '</small>';
-  echo '<br>';  
-  echo '<br>'; 
+  echo '<br>';
   
-  echo "<strong>On the kofferstory.org server:</strong><br>";
+  echo "<strong>KofferStory.org:</strong><br/>";
   
-  echo "<small>There are ".$data['mp4files']." files with a .mp4 extension<br>";
+  echo "<small>Er zijn ".$data['mp4files']." videobestanden<br>";
   //echo 'the names of those files are '.json_encode($b).'<br>';
-  echo 'the total disk space = '.number_format((float)($data['directorySize']/1000000), 2, '.', '')." MB";
+  //echo 'the total disk space = '.number_format((float)($data['directorySize']/1000000), 2, '.', '')." MB";
   echo '</small>';
-  echo '<br>';  
-  echo '<br>';  
+  echo '<br>';
   // var_dump ($filesToMove);
   // echo json_encode($filesToMove).'<br>';
   //----------------------------------------------------------------------------------------------
