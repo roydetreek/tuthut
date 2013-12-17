@@ -59,7 +59,7 @@
 
 
   echo "<strong>Deze koffer:</strong><br/>";
-  echo "<small>Er ".($amountOfFilesToMove == 1 ? "is " : "zijn ").$amountOfFilesToMove.($amountOfFilesToMove == 1 ? " nieuw nieuwe bestand" : " nieuwe video bestanden")."<br>";
+  echo "<small>Er ".($amountOfFilesToMove == 1 ? "is " : "zijn ").$amountOfFilesToMove.($amountOfFilesToMove == 1 ? " nieuw bestand" : " nieuwe video bestanden")."<br>";
   //echo 'the names of those files are '.json_encode($responseArray["allnames"]).'<br>';
   //echo 'Total upload size = '.number_format((float)($totalDirectorySize/1000000), 2, '.', '')." MB";
   echo '</small>';
@@ -150,7 +150,7 @@
   
   while($row = mysqli_fetch_array($localResults, MYSQL_ASSOC)){
   	mysqli_query($connection2,"INSERT INTO videos (".implode(", ",array_keys($row)).")  VALUES ('".implode("', '",array_values($row))." ')");
-  	echo "All data has been transferred";
+  	//echo "All data has been transferred";
   }
   if (mysqli_connect_errno($connection1)){
     	echo "Failed to connect to MySQL connection1: " . mysqli_connect_error();
