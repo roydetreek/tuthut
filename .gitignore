@@ -1,7 +1,8 @@
 uploads/*
 transfers/*
 config.php
-ipad/node_modules/*
+node_modules/*
 videos/*.mp4
 videos/kofferStoryServer_Data/*
 videos/kofferStoryServer.exe
+node_modules/grunt-contrib-clean/.jshintrc

@@ -12,20 +12,8 @@
   <div class="progress">
     <div class="progress-bar" id="progressbarTotal" style="width: 0%;"></div>
   </div>
-  <br>
-  <p id='progressbar'></p>
-  <img id='progressbarimg' src='orange.jpg' width = 1 height = 10/><br />
-  <p id='totalprogressbar'></p>
-  <img id='totalprogressbarimg' src='orange.jpg' width = 1 height = 10/><br />
-  
   <script>
     function updateProgress(percentage,totalpercentage){
-    	document.getElementById('progressbar').innerHTML = parseInt(percentage)+'%';
-    	document.getElementById('progressbarimg').width = percentage*2;
-    	
-    	document.getElementById('totalprogressbar').innerHTML = parseInt(totalpercentage)+'%';
-    	document.getElementById('totalprogressbarimg').width = totalpercentage*2;
-    	
     	document.getElementById('progressbarStory').style.width = percentage+'%';
     	document.getElementById('progressbarTotal').style.width = totalpercentage+'%';
     }
@@ -160,7 +148,7 @@
   
   while($row = mysqli_fetch_array($localResults, MYSQL_ASSOC)){
   	mysqli_query($connection2,"INSERT INTO videos (".implode(", ",array_keys($row)).")  VALUES ('".implode("', '",array_values($row))." ')");
-  	echo "All data has been transferd";
+  	echo "All data has been transferred";
   }
   if (mysqli_connect_errno($connection1)){
     	echo "Failed to connect to MySQL connection1: " . mysqli_connect_error();
