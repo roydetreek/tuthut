@@ -1,4 +1,4 @@
 uploads/*
 transfers/*
 config.php
-ipad/node_modules/*
+node_modules/*
