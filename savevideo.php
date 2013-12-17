@@ -35,7 +35,7 @@ if (isset($_POST["name"])){
 	           '$title',
 	           '$description',
 	           '$object',	 
-			   '$videosource'.
+			   '$videosource',
 	           '$name',
 			   '$dob',
 	           '$location',

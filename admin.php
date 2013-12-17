@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
 
 
-<input type="Button" value="add foto's to the video's to create a thumbnail" onclick="CreateTable()"> 
+<!--<input type="Button" value="add foto's to the video's to create a thumbnail" onclick="CreateTable()"><br /> -->
 
 
 
@@ -24,7 +24,7 @@
   <tbody>
   </tbody>
 </table>
-<br />
+
 
 <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>"> 
 <input type="Submit" name="copyfiles" value="upload everything new to the webserver" onclick="viewUpload()"> 
