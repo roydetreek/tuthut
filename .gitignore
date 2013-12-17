@@ -3,3 +3,5 @@ transfers/*
 config.php
 ipad/node_modules/*
 videos/*.mp4
+videos/kofferStoryServer_Data/*
+videos/kofferStoryServer.exe
